@@ -33,7 +33,7 @@ var allowCrossDomain = function (req, res, next) {
 
 // 验证token
 var tokenValidation = function (req, res, next) {
-  const unlessPath = ['/login', '/registry']
+  const unlessPath = ['/api/love/login', '/api/love/registry']
   if (unlessPath.includes(req.path)) return next()
   const {token} = req.headers
   jwt.verify(token, 'secret', function (err, decoded) {
@@ -50,8 +50,8 @@ var tokenValidation = function (req, res, next) {
 }
 app.use(tokenValidation)
 
-app.use('/', indexRouter)
-app.use('/users', usersRouter)
+app.use('/api/love/', indexRouter)
+app.use('/api/love/users', usersRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
