@@ -29,7 +29,7 @@ var allowCrossDomain = function (req, res, next) {
   next()
 }
 // TODO: 先注释掉，让小倩知道会跨域
-// app.use(allowCrossDomain)
+app.use(allowCrossDomain)
 
 // 验证token
 var tokenValidation = function (req, res, next) {
