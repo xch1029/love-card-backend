@@ -24,12 +24,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 var allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
-  res.header('Access-Control-Allow-Headers', 'token')
+  res.header('Access-Control-Allow-Headers', 'token, Content-Type')
   res.header('Access-Control-Allow-Credentials', 'true')
   next()
 }
 // TODO: 先注释掉，让小倩知道会跨域
-// app.use(allowCrossDomain)
+app.use(allowCrossDomain)
 
 // 验证token
 var tokenValidation = function (req, res, next) {
