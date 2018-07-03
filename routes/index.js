@@ -49,6 +49,16 @@ router.post('/login', function (req, res, next) {
     }
   })
 })
+// 根据token获取用户信息
+router.get('/getUserInfo', function (req, res, next) {
+  db.query(`SELECT * FROM love_card_user WHERE id='${req.userId}'`, [], function (result, fields) {
+    res.json({
+      code: 0,
+      msg: '获取用户信息成功',
+      data: result
+    })
+  })
+})
 // 修改用户信息
 router.post('/updateUser', function (req, res, next) {
   let keys = Object.keys(req.body)
