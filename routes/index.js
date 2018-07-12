@@ -84,7 +84,7 @@ router.post('/addCardModel', function (req, res, next) {
 })
 // 获取卡片模型列表
 router.get('/cardModelList', function (req, res, next) {
-  db.query(`SELECT * FROM card_model WHERE createUserId=${req.userId}`, [], function (result, fields) {
+  db.query(`SELECT * FROM card_model WHERE createUserId=${req.userId} AND 'drop'=0`, [], function (result, fields) {
     res.json({
       code: 0,
       msg: '获取成功',
@@ -103,6 +103,20 @@ router.post('/updateCardModel', function (req, res, next) {
       res.json({
         code: 0,
         msg: '修改成功'
+      })
+    }
+  )
+})
+// 删除卡片模型
+router.post('/delCardModel', function (req, res, next) {
+  const cardId = req.body.id
+  db.query(
+    `UPDATE card_model SET \`drop\`=1 WHERE id=${cardId} AND createUserId=${req.userId}`,
+    [],
+    function (reaults, fields) {
+      res.json({
+        code: 0,
+        msg: '删除成功'
       })
     }
   )
