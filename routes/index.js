@@ -75,7 +75,7 @@ router.post('/addCardModel', function (req, res, next) {
   const {name, msg} = req.body
   const time = (new Date()).toString()
   console.log(time)
-  db.query(`INSERT INTO card (name, createUserId, msg, createTime) VALUES ('${name}', ${req.userId}, '${msg}', '${time}')`, [], function (result, fields) {
+  db.query(`INSERT INTO card_model (name, createUserId, msg, createTime) VALUES ('${name}', ${req.userId}, '${msg}', '${time}')`, [], function (result, fields) {
     res.json({
       code: 0,
       msg: '添加成功'
